@@ -2,8 +2,7 @@ import { User } from "../../Database";
 
 export default {
   
-  findByEmail:async(data:any)=>{
-      const {email}=data
+  findByEmail:async(email: string)=>{
       
     try {
       return await User.findOne({ email });

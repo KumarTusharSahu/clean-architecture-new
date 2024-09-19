@@ -1,12 +1,12 @@
-import { loginUserUseCase, registerUserUseCase } from "../../Applications/Usecases";
+import { forgotPasswordUseCase, loginUserUseCase, registerUserUseCase, ResetPasswordUseCase } from "../../Applications/Usecases";
 import { createNewUserRepo, findByEmailRepo, findByResetTokenRepo, findByUsernameRepo, saveUserRepo } from "../../Frameworks/Mongodb/Repositories";
-
-
 
 
 const useCase:any = {
     registerUserUseCase,
-    loginUserUseCase
+    loginUserUseCase,
+    forgotPasswordUseCase,
+    ResetPasswordUseCase
 }
 
 const repository:any = {

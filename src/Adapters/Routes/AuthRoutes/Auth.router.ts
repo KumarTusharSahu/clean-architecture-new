@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { LoginUserController, RegisterUserController } from '../../Controllers/UserControllers';
+import { ForgotPasswordController, LoginUserController, RegisterUserController, ResetPasswordController } from '../../Controllers/UserControllers';
 
 
 export default (dependencies: any) => {
@@ -13,6 +13,12 @@ export default (dependencies: any) => {
 
   // Route for user login
   router.post('/login', LoginUserController(dependencies));
+
+  // Route for forgot password
+  router.post('/forgot-password', ForgotPasswordController(dependencies));
+
+  // Route for reset password
+  router.post('/reset-password/:id', ResetPasswordController(dependencies));
 
   return router;
 };

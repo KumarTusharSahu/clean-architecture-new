@@ -1,8 +1,8 @@
-import { loginUserUseCase, registerUserUseCase, forgotPasswordUseCase } from "./AuthUseCase";
-
+import { forgotPasswordUseCase, loginUserUseCase, registerUserUseCase, ResetPasswordUseCase } from "./AuthUseCase";
 
 export{
     registerUserUseCase,
     loginUserUseCase,
-    forgotPasswordUseCase
+    forgotPasswordUseCase,
+    ResetPasswordUseCase
 }

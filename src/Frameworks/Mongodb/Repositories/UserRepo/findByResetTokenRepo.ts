@@ -1,8 +1,7 @@
 import { User } from "../../Database";
 
 export default {
-  findByResetToken: async (data: any) => {
-    const { token } = data;
+  findByResetToken: async (token : string) => {
 
     try {
       return await User.findOne({

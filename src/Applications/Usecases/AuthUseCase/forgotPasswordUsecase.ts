@@ -1,12 +1,13 @@
 import crypto from 'crypto';
 import nodemailer from 'nodemailer';
-import { User } from '../../../Frameworks/Mongodb/Database';
 
-export const forgotPasswordUseCase = (dependencies:any) => {
-    const { findByEmailRepo } = dependencies.repository;
+export const forgotPasswordUseCase = (dependencies: any) => {
+  // console.log(dependencies);
+  const { findByEmailRepo } = dependencies.repository;
 
-  return async (email: string): Promise<void> => {
-    const user = await findByEmailRepo(email); 
+  const executeFunction = async (email: string): Promise<void> => {
+    const user = await findByEmailRepo.findByEmail(email);
+    console.log(user)
     if (!user) {
       throw new Error('User not found');
     }
@@ -17,7 +18,7 @@ export const forgotPasswordUseCase = (dependencies:any) => {
 
     await user.save(); // Save the updated user (assuming user is a Mongoose model or similar)
 
-    const resetUrl = `http://localhost:5000/api/users/reset-password/${token}`;
+    const resetUrl = `http://localhost:5000/api/auth/reset-password/${token}`;
 
     await transporter.sendMail({
       to: user.email, // Send to user's registered email
@@ -26,6 +27,8 @@ export const forgotPasswordUseCase = (dependencies:any) => {
       text: `You requested a password reset. Click the link to reset your password: ${resetUrl}`,
     });
   };
+
+  return { executeFunction };
 };
 
 // Create the transporter (dependency)
@@ -39,4 +42,3 @@ const transporter = nodemailer.createTransport({
     pass: "fmciylyqpbyvflnj",
   },
 });
-

@@ -2,7 +2,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
 export const loginUserUseCase = (dependencies: any) => {
-  console.log(dependencies)
+  // console.log(dependencies)
   const { findByUsernameRepo } = dependencies.repository;
   const JWT_SECRET = process.env.JWT_SECRET || 'your_jwt_secret_key';
 
