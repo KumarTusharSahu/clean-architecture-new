@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import { User } from '../Frameworks/Mongodb/Database';
+import { User } from '../Mongodb/Database';
 
 export const userService = (dependencies: any) => {
   const { findByEmailRepo } = dependencies.repository;
