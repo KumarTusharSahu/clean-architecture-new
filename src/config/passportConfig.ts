@@ -19,11 +19,11 @@ passport.use(
         if (!user) {
           user = await User.create({
             googleId: profile.id,
-            name: profile.displayName,
+            username: profile.displayName,
             email: profile.emails?.[0].value || null,
           });
         }
-        
+
         return done(null, user);
       } catch (error) {
         console.error("Error during Google authentication:", error);
