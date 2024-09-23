@@ -9,7 +9,7 @@ passport.use(
       clientID:
         "1048534823626-2b2lo4ua7qg1bsrejpti52n652ea3ibh.apps.googleusercontent.com",
       clientSecret: "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",
-      callbackURL: "http://localhost:5000/api/user/auth/google/callback",
+      callbackURL: "http://localhost:5000/api/auth/google/callback",
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
@@ -23,7 +23,7 @@ passport.use(
             email: profile.emails?.[0].value || null,
           });
         }
-
+        
         return done(null, user);
       } catch (error) {
         console.error("Error during Google authentication:", error);
