@@ -1,8 +1,10 @@
 import { Router } from 'express';
-import { ForgotPasswordController, LoginUserController, RegisterUserController, ResetPasswordController } from '../../Controllers/UserControllers';
+import { ForgotPasswordController, isVerifiedUserController, LoginUserController, protectedRouteController, RegisterUserController, ResetPasswordController } from '../../Controllers/UserControllers';
 import validate from '../../../Frameworks/middlewares/validationMiddleware';
 import loginSchema from '../../../Frameworks/validations/authValidations/loginValidation';
 import resetSchema from '../../../Frameworks/validations/authValidations/resetValidation';
+import protectRoute from '../../../Frameworks/middlewares/protectedRouteMiddleware';
+
 
 export default (dependencies: any) => {
   const router = Router();
@@ -21,6 +23,10 @@ export default (dependencies: any) => {
 
   // Route for reset password
   router.post('/reset-password/:id', validate(resetSchema), ResetPasswordController(dependencies));
+
+  router.patch('/verified/:id', isVerifiedUserController(dependencies));
+
+  router.get('/protected', protectRoute, protectedRouteController(dependencies));
 
   return router;
 };

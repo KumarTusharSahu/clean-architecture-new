@@ -9,7 +9,8 @@ export default (dependencies: any) => {
       console.log(req.body);
 
       const user = await registerUserUseCase(dependencies).executeFunction(username, password, email);
-      res.status(201).json(user);
+      res.status(201).json({message: 'verification email sent.',
+        user: user});
     } catch (error: any) {
       console.log(error)
       // Check if the error is due to an existing user

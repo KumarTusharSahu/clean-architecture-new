@@ -1,12 +1,9 @@
 import { User } from "../../Database";
 
 export default {
-  createNewUser: async (data: any) => {
-    console.log(data);
+  findById: async (id: string) => {
     try {
-      const user = await User.create(data);
-      user.save();
-      return user;
+      return await User.findById(id);
     } catch (error) {
       return { status: false, message: `Something Went Wrong..! ${error}` };
     }

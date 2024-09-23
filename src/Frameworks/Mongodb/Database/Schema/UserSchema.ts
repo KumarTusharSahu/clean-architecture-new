@@ -6,6 +6,9 @@ const UserSchema=new mongoose.Schema({
     password: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     resetPasswordToken: { type: String },
-    resetPasswordExpires: { type: Date }})
+    resetPasswordExpires: { type: Date },
+    isVerified: { type:Boolean, default:false, required:true }
+})
+    
 
 export const User = mongoose.model("User",UserSchema)

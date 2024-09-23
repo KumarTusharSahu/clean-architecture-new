@@ -16,7 +16,7 @@ export default (dependencies: any) => {
         res.status(400).json({ "message": "New password and confirm password do not match" });
       }
     } catch (error:any) {
-      res.status(400).json({ message: error.message });
+      res.status(500).json({ message: error.message });
     }
   }
 

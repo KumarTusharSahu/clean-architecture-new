@@ -1,12 +1,15 @@
-import { forgotPasswordUseCase, loginUserUseCase, registerUserUseCase, ResetPasswordUseCase } from "../../Applications/Usecases";
-import { createNewUserRepo, findByEmailRepo, findByResetTokenRepo, findByUsernameRepo, saveUserRepo } from "../../Frameworks/Mongodb/Repositories";
+import { forgotPasswordUseCase, isVerifiedUserUseCase, loginUserUseCase, protectedRouteUseCase, registerUserUseCase, ResetPasswordUseCase } from "../../Applications/Usecases";
 
+import { createNewUserRepo, findByEmailRepo, findByIdRepo, findByResetTokenRepo, findByUsernameRepo, saveUserRepo } from "../../Frameworks/Mongodb/Repositories";
 
 const useCase:any = {
     registerUserUseCase,
     loginUserUseCase,
     forgotPasswordUseCase,
-    ResetPasswordUseCase
+    ResetPasswordUseCase,
+    isVerifiedUserUseCase,
+protectedRouteUseCase
+
 }
 
 const repository:any = {
@@ -14,7 +17,8 @@ const repository:any = {
     findByUsernameRepo,
     findByResetTokenRepo,
     findByEmailRepo,
-    createNewUserRepo
+    createNewUserRepo,
+    findByIdRepo
 }
 
 export default {

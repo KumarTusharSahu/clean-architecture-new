@@ -17,3 +17,7 @@ app.use('/api',routes(Dependencies))
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+//IMPLEMENT FOLLOWING: 
+  //PROTECTED ROUTE
+  //MULTER

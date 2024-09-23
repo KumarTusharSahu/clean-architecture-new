@@ -6,7 +6,7 @@ export const loginUserUseCase = (dependencies: any) => {
   const { findByUsernameRepo } = dependencies.repository;
   const JWT_SECRET = process.env.JWT_SECRET || 'your_jwt_secret_key';
 
-  const executeFunction = async (username: string, password: string): Promise<{ token: string }> => {
+  const executeFunction = async (username: string, password: string) => {
     const user = await findByUsernameRepo.findByUsername(username);
     if (!user) {
       throw new Error('Invalid username or password');
@@ -18,7 +18,7 @@ export const loginUserUseCase = (dependencies: any) => {
     }
 
     const token = jwt.sign({ id: user._id, username: user.username }, JWT_SECRET, { expiresIn: '1h' });
-    return { token };
+    return { token, user };
   };
 
   return { executeFunction };
