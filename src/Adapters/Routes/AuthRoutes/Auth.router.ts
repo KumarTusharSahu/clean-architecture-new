@@ -4,6 +4,7 @@ import validate from '../../../Frameworks/middlewares/validationMiddleware';
 import loginSchema from '../../../Frameworks/validations/authValidations/loginValidation';
 import resetSchema from '../../../Frameworks/validations/authValidations/resetValidation';
 import protectRoute from '../../../Frameworks/middlewares/protectedRouteMiddleware';
+import passport from 'passport';
 
 
 export default (dependencies: any) => {
@@ -27,6 +28,25 @@ export default (dependencies: any) => {
   router.patch('/verified/:id', isVerifiedUserController(dependencies));
 
   router.get('/protected', protectRoute, protectedRouteController(dependencies));
+
+  router.get(
+    "/google",
+    passport.authenticate("google", {
+      scope: ["profile", "email"], // Specify the scopes you need
+    })
+  );
+
+  // Callback route that Google redirects to after authentication
+  router.get(
+    "/google/callback",
+    passport.authenticate("google", {
+      failureRedirect: "/login", // Redirect to login if authentication fails
+    }),
+    (req, res) => {
+      // Successful authentication, redirect to desired route
+      res.send({ message: "login succesfully" ,data:req.user}); // Change to your desired route after login
+    }
+  );
 
   return router;
 };

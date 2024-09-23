@@ -4,7 +4,7 @@ import connectDB from './config/db.connect';
 import dotenv from 'dotenv';
 import { routes } from './Adapters/Routes';
 import Dependencies from './Frameworks/Config/Dependencies';
-
+import './config/passportConfig'
 dotenv.config(); // Load environment variables
 
 const app = express();
